@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Linting staged files (via lint-staged)..."
+npx lint-staged
+
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  echo "❌ Lint-staged failed (lint, format, maybe fixable)."
+  exit 1
+fi
+
+echo "✅ Staged files pass lint/format. Commit allowed!"
